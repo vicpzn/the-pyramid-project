@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Pyramid Project</title>
+    <script type="module" src="./js/index.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+  </head>
+  <body>
+    <div id="top-bar"><h1>The Pyramid Project</h1></div>
+    <div id="board">
+      <div id="welcome">
+        <div id="welcome-top">
+          <p id="welcome-to-intro">Welcome to the Pyramid Project</p>
+          <p id="what-do-you-want">What do you want to do?</p>
+        </div>
+        <div id="favicon">
+          <img src="./favicon.png" alt="logo" width="200px" />
+        </div>
+        <div id="welcome-mid">
+          <button id="start-btn"><p>START</p></button>
+          <button id="instructions-btn"><p>INSTRUCTIONS</p></button>
+        </div>
+      </div>
+      <div id="instructions">
+        <div id="insctructions-top">
+          <p id="instructions-title">INSTRUCTIONS</p>
+          <p>
+            The Pyramid Project is a game based on randomization and is divided
+            in 4 rounds. Each round, you will draw a random card and have some
+            guesses to make:
+          </p>
+          <ol>
+            <li>Guess the color of the card.</li>
+            <li>
+              Guess if the value of the card is higher of inferior compared to
+              your first card.
+            </li>
+            <li>
+              Guess if the value of the card is in or out the interval of your
+              two current cards.
+            </li>
+            <li>Guess the family of the card.</li>
+          </ol>
+        </div>
+        <div id="instructions-mid">
+          <button id="go-back-btn"><p>GO BACK</p></button>
+        </div>
+      </div>
+      <div id="top-cards">
+        <img class="card" src="./img/cards/green_back.png" alt="card" />
+        <img class="card" src="./img/cards/green_back.png" alt="card" />
+        <img class="card" src="./img/cards/green_back.png" alt="card" />
+        <img class="card" src="./img/cards/green_back.png" alt="card" />
+      </div>
+      <div id="right-cards">
+        <img class="card" src="./img/cards/gray_back.png" alt="card" />
+        <img class="card" src="./img/cards/gray_back.png" alt="card" />
+        <img class="card" src="./img/cards/gray_back.png" alt="card" />
+        <img class="card" src="./img/cards/gray_back.png" alt="card" />
+      </div>
+      <div id="bottom-cards">
+        <img class="card" src="./img/cards/purple_back.png" alt="card" />
+        <img class="card" src="./img/cards/purple_back.png" alt="card" />
+        <img class="card" src="./img/cards/purple_back.png" alt="card" />
+        <img class="card" src="./img/cards/purple_back.png" alt="card" />
+      </div>
+      <div id="left-cards">
+        <img class="card" src="./img/cards/blue_back.png" alt="card" />
+        <img class="card" src="./img/cards/blue_back.png" alt="card" />
+        <img class="card" src="./img/cards/blue_back.png" alt="card" />
+        <img class="card" src="./img/cards/blue_back.png" alt="card" />
+      </div>
+      <div id="score">
+        <p>Your Score: 0</p>
+        <p>Left Score: 0</p>
+        <p>Top Score: 0</p>
+        <p>Right Score: 0</p>
+      </div>
+      <!-- <div id="action-box">
+        <p>Actions</p>
+      </div> -->
+      <div id="deck"><img src="./img/cards/red_back.png" alt="deck" /></div>
+    </div>
+  </body>
+</html>

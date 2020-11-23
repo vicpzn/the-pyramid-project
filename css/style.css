@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#top-bar {
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 0px 13px 19px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 13px 19px 0px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+h1 {
+  font-family: "Big Shoulders Inline Text", cursive;
+  text-transform: uppercase;
+  color: #444444;
+  text-shadow: 1px 0px 1px #cccccc, 0px 1px 1px #eeeeee, 2px 1px 1px #cccccc,
+    1px 2px 1px #eeeeee, 3px 2px 1px #cccccc, 2px 3px 1px #eeeeee,
+    4px 3px 1px #cccccc, 3px 4px 1px #eeeeee, 5px 4px 1px #cccccc,
+    4px 5px 1px #eeeeee, 6px 5px 1px #cccccc, 5px 6px 1px #eeeeee,
+    7px 6px 1px #cccccc;
+}
+
+#board {
+  width: 100vw;
+  height: 90vh;
+  background-color: green;
+  position: relative;
+}
+
+#welcome {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 80%;
+  width: 80%;
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#instructions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 80%;
+  width: 80%;
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  border: 1px solid black;
+  border-radius: 10px;
+  visibility: hidden;
+}
+
+#welcome-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#welcome-top #welcome-to-intro {
+  font-size: 2em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#welcome-top #what-do-you-want {
+  font-size: 1em;
+}
+
+#welcome-top p {
+  font-family: Roboto;
+}
+
+#instruction-title {
+  font-family: Roboto;
+}
+
+#start-btn {
+  font-family: Roboto;
+  background-color: green;
+  width: 200px;
+  height: 75px;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-radius: 5rem;
+  color: white;
+}
+
+#start-btn:hover {
+  background-color: lightgreen;
+}
+#start-btn:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+#instructions-btn {
+  font-family: Roboto;
+  background-color: plum;
+  width: 200px;
+  height: 75px;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-radius: 5rem;
+}
+
+#instructions-btn:hover {
+  background-color: rgb(238, 192, 238);
+}
+
+#instructions-btn:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+/* #favicon:hover {
+  transform: scale(0.1);
+  transition: transform 3s;
+} */
+
+#go-back-btn {
+  font-family: Roboto;
+  background-color: rgb(31, 29, 190);
+  width: 200px;
+  height: 75px;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-radius: 5rem;
+}
+
+#go-back-btn:hover {
+  background-color: rgb(22, 137, 231);
+}
+
+#go-back-btn:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+#deck > img {
+  position: absolute;
+  top: calc(100% / 2 - 95.5px);
+  left: calc(100% / 2 - 62px);
+  width: 124px;
+}
+
+#deck > img:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+#top-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: calc(100% / 2 - 346px);
+  width: 100vh;
+}
+
+#right-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 200px;
+  right: -250px;
+  width: 100vh;
+  transform: rotate(270deg);
+}
+
+#bottom-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0px;
+  left: calc(100% / 2 - 346px);
+  width: 100vh;
+}
+
+#left-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 200px;
+  left: -250px;
+  width: 100vh;
+  transform: rotate(90deg);
+}
+
+#score {
+  background-color: white;
+  font-family: Roboto;
+  position: absolute;
+  border-radius: 5%;
+  padding: 10px;
+  top: calc(100% / 2 - 45px);
+  left: calc(100% / 2 + 100px);
+  text-align: right;
+}
+
+/* #action-box {
+  background-color: white;
+  font-family: Roboto;
+  position: absolute;
+  border-radius: 5%;
+  padding: 10px;
+  top: calc(100% / 2 - 45px);
+  left: calc(100% / 2 + 250px);
+  width: 200px;
+} */
+
+.card {
+  width: 124px;
+}
+
+.card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  margin-bottom: 10px;
+}
