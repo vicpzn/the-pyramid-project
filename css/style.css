@@ -283,6 +283,7 @@ h1 {
   bottom: 0px;
   left: calc(100% / 2 - 346px);
   width: 100vh;
+  perspective: 1000px;
 }
 
 #left-cards {
@@ -318,15 +319,14 @@ h1 {
   width: 200px;
 } */
 
-.card {
+.front-card {
   width: 124px;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
 }
 
-.card:active {
+.front-card:active {
   transform: scale(0.97);
   transition: transform 0.2s;
-}
-
-.card:hover {
-  margin-bottom: 10px;
 }

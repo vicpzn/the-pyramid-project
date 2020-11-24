@@ -57,10 +57,10 @@ class Player {
   constructor(name) {
     this.points = 0;
     this.name = name;
-    this.firstChoice = "Red";
-    this.secondChoice = "Lower";
-    this.thirdChoice = "Inside";
-    this.fourthChoice = "Spades";
+    this.firstChoice = "";
+    this.secondChoice = "";
+    this.thirdChoice = "";
+    this.fourthChoice = "";
     this.firstCard = getCard();
     this.secondCard = getCard();
     this.thirdCard = getCard();
@@ -72,6 +72,19 @@ class Player {
     this.secondChoice = secondRoundChoices[getRandomInt(2)];
     this.thirdChoice = thirdRoundChoices[getRandomInt(2)];
     this.fourthChoice = fourthRoundChoices[getRandomInt(4)];
+  }
+
+  firstGuess(arr) {
+    this.firstChoice = arr;
+  }
+  secondGuess(arr) {
+    this.secondChoice = arr;
+  }
+  thirdGuess(arr) {
+    this.thirdChoice = arr;
+  }
+  fourthGuess(arr) {
+    this.fourthChoice = arr;
   }
 
   firstRound() {
@@ -100,13 +113,11 @@ class Player {
       playerSecondCardValue < playerFirstCardValue
     ) {
       this.points += 20;
-      console.log("+20");
     } else if (
       this.secondChoice === "Higher" &&
       playerSecondCardValue > playerFirstCardValue
     ) {
       this.points += 20;
-      console.log("+20");
     }
   }
 
@@ -151,28 +162,41 @@ const player2 = new Player("Left");
 const player3 = new Player("Right");
 const player4 = new Player("Bottom");
 
+// WHEN START IS CLICKED -->
 player2.randomChoices();
 player3.randomChoices();
 player4.randomChoices();
 
+player1.firstGuess("Red");
 player1.firstRound();
 player2.firstRound();
 player3.firstRound();
 player4.firstRound();
 
+player1.secondGuess("Higher");
 player1.secondRound();
 player2.secondRound();
 player3.secondRound();
 player4.secondRound();
 
+player1.thirdGuess("Inside");
 player1.thirdRound();
 player2.thirdRound();
 player3.thirdRound();
 player4.thirdRound();
 
+player1.fourthGuess("Spades");
 player1.fourthRound();
 player2.fourthRound();
 player3.fourthRound();
 player4.fourthRound();
 
+const players = [player1, player2, player3, player4];
+const scores = [];
+
+for (let i = 0; i < players.length; i++) {
+  scores.push(players[i].name, players[i].points);
+}
+
 console.log(player1, player2, player3, player4);
+console.log(scores);
