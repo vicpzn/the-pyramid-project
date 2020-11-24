@@ -25,6 +25,12 @@ body {
   z-index: 10;
 }
 
+#instructions-link {
+  position: fixed;
+  top: 25px;
+  left: 10px;
+}
+
 h1 {
   font-family: "Big Shoulders Inline Text", cursive;
   text-transform: uppercase;
@@ -78,6 +84,26 @@ h1 {
   border: 1px solid black;
   border-radius: 10px;
   visibility: hidden;
+  padding: 20px 100px;
+}
+
+#first-prompt {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 40%;
+  width: 40%;
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  border: 1px solid black;
+  border-radius: 10px;
+  visibility: hidden;
 }
 
 #welcome-top {
@@ -107,13 +133,13 @@ h1 {
 
 #start-btn {
   font-family: Roboto;
-  background-color: green;
+  /* background-color: green; */
   width: 200px;
   height: 75px;
   font-size: 1.5em;
-  border: 1px solid black;
-  border-radius: 5rem;
-  color: white;
+  border: 3px solid greenyellow;
+  border-radius: 8px;
+  /* color: white; */
 }
 
 #start-btn:hover {
@@ -126,12 +152,12 @@ h1 {
 
 #instructions-btn {
   font-family: Roboto;
-  background-color: plum;
+  /* background-color: plum; */
   width: 200px;
   height: 75px;
   font-size: 1.5em;
-  border: 1px solid black;
-  border-radius: 5rem;
+  border: 3px solid plum;
+  border-radius: 8px;
 }
 
 #instructions-btn:hover {
@@ -143,19 +169,68 @@ h1 {
   transition: transform 0.2s;
 }
 
-/* #favicon:hover {
-  transform: scale(0.1);
-  transition: transform 3s;
-} */
-
-#go-back-btn {
+#red-card-btn {
   font-family: Roboto;
-  background-color: rgb(31, 29, 190);
+  /* background-color: plum; */
   width: 200px;
   height: 75px;
   font-size: 1.5em;
-  border: 1px solid black;
-  border-radius: 5rem;
+  border: 3px solid red;
+  border-radius: 8px;
+}
+
+#red-card-btn:hover {
+  background-color: rgb(241, 93, 93);
+}
+
+#red-card-btn:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+#black-card-btn {
+  font-family: Roboto;
+  /* background-color: plum; */
+  width: 200px;
+  height: 75px;
+  font-size: 1.5em;
+  border: 3px solid black;
+  border-radius: 8px;
+}
+
+#black-card-btn:hover {
+  background-color: rgb(126, 122, 122);
+}
+
+#black-card-btn:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+@keyframes growth {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#favicon {
+  animation: growth 1s infinite;
+}
+
+#go-back-btn {
+  font-family: Roboto;
+  /* background-color: rgb(31, 29, 190); */
+  width: 200px;
+  height: 75px;
+  font-size: 1.5em;
+  border: 3px solid dodgerblue;
+  border-radius: 8px;
 }
 
 #go-back-btn:hover {

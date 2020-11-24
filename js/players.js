@@ -39,9 +39,9 @@ var values = [
   "14",
 ];
 
-function getDeck() {
-  var deck = [];
+var deck = [];
 
+function initDeck() {
   for (var i = 0; i < family.length; i++) {
     for (var j = 0; j < values.length; j++) {
       var cards = `${values[j]} ${family[i]}`;
@@ -52,23 +52,35 @@ function getDeck() {
   return deck;
 }
 
-// coding the first round
+initDeck();
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-player1.firstCard = getDeck()[getRandomInt(52)];
-player1.secondCard = getDeck()[getRandomInt(52)];
-player1.thirdCard = getDeck()[getRandomInt(52)];
-player1.fourthCard = getDeck()[getRandomInt(52)];
-player1.firstChoice = "Red";
-player1.secondChoice = "Lower";
-player1.thirdChoice = "Inside";
-player1.fourthChoice = "Diamonds";
+function getCard() {
+  var card = deck[getRandomInt(deck.length)];
+  const index = deck.indexOf(card);
+  deck.splice(index, 1);
+  return card;
+}
 
-// hearts & diamond = Red
-// clubs & spades = Black
+player1.firstCard = getCard();
+player1.secondCard = getCard();
+player1.thirdCard = getCard();
+player1.fourthCard = getCard();
+
+// COMPUTER CHOICES
+
+var firstRoundChoices = ["Red", "Black"];
+var secondRoundChoices = ["Lower", "Higher"];
+var thirdRoundChoices = ["Inside", "Outside"];
+var fourthRoundChoices = ["Spades", "Diamonds", "Clubs", "Hearts"];
+
+player1.firstChoice = firstRoundChoices[getRandomInt(2)];
+player1.secondChoice = secondRoundChoices[getRandomInt(2)];
+player1.thirdChoice = thirdRoundChoices[getRandomInt(2)];
+player1.fourthChoice = fourthRoundChoices[getRandomInt(4)];
 
 const playerOneFirstCardValue = Number(
   player1.firstCard.substr(0, player1.firstCard.indexOf(" "))

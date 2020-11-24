@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Pyramid Project</title>
     <script type="module" src="./js/index.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" type="image/png" href="./favicon.png" />
   </head>
   <body>
-    <div id="top-bar"><h1>The Pyramid Project</h1></div>
+    <div id="top-bar">
+      <h1>The Pyramid Project</h1>
+      <div id="instructions-link"><i class="far fa-question-circle"></i></div>
+    </div>
     <div id="board">
       <div id="welcome">
         <div id="welcome-top">
@@ -20,9 +27,14 @@
           <img src="./favicon.png" alt="logo" width="200px" />
         </div>
         <div id="welcome-mid">
-          <button id="start-btn"><p>START</p></button>
+          <button id="start-btn"><p>NEW GAME</p></button>
           <button id="instructions-btn"><p>INSTRUCTIONS</p></button>
         </div>
+      </div>
+      <div id="first-prompt">
+        <p>Guess the color of the card:</p>
+        <button id="red-card-btn"><p>RED</p></button>
+        <button id="black-card-btn"><p>BLACK</p></button>
       </div>
       <div id="instructions">
         <div id="insctructions-top">
@@ -33,17 +45,22 @@
             guesses to make:
           </p>
           <ol>
-            <li>Guess the color of the card.</li>
+            <li>
+              Guess the color of the card. +10 points for a correct guess.
+            </li>
             <li>
               Guess if the value of the card is higher of inferior compared to
-              your first card.
+              your first card. +20 points for a correct guess.
             </li>
             <li>
               Guess if the value of the card is in or out the interval of your
-              two current cards.
+              two current cards. +30 points for a correct guess.
             </li>
-            <li>Guess the family of the card.</li>
+            <li>
+              Guess the family of the card. +40 points for a correct guess.
+            </li>
           </ol>
+          <p>The objective is to reach 100 points!</p>
         </div>
         <div id="instructions-mid">
           <button id="go-back-btn"><p>GO BACK</p></button>
@@ -56,10 +73,10 @@
         <img class="card" src="./img/cards/green_back.png" alt="card" />
       </div>
       <div id="right-cards">
-        <img class="card" src="./img/cards/gray_back.png" alt="card" />
-        <img class="card" src="./img/cards/gray_back.png" alt="card" />
-        <img class="card" src="./img/cards/gray_back.png" alt="card" />
-        <img class="card" src="./img/cards/gray_back.png" alt="card" />
+        <img class="card" src="./img/cards/yellow_back.png" alt="card" />
+        <img class="card" src="./img/cards/yellow_back.png" alt="card" />
+        <img class="card" src="./img/cards/yellow_back.png" alt="card" />
+        <img class="card" src="./img/cards/yellow_back.png" alt="card" />
       </div>
       <div id="bottom-cards">
         <img class="card" src="./img/cards/purple_back.png" alt="card" />

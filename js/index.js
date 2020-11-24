@@ -3,12 +3,15 @@ const welcomeWindow = document.querySelector("#welcome");
 const goBackBtn = document.querySelector("#go-back-btn");
 const instructionsBtn = document.querySelector("#instructions-btn");
 const instructionsWindow = document.querySelector("#instructions");
+const instructionTopBar = document.querySelector("#instructions-link");
+const firstPromptWindows = document.querySelector("#first-prompt");
 
-startBtn.onclick = hide;
-instructionsBtn.onclick = show;
+startBtn.onclick = hideWelcome;
+instructionsBtn.onclick = showInstructions;
 goBackBtn.onclick = hideInstructions;
+instructionTopBar.onclick = showInstructions;
 
-function hide() {
+function hideWelcome() {
   welcomeWindow.style.visibility = "hidden";
 }
 
@@ -16,7 +19,7 @@ function hideInstructions() {
   instructionsWindow.style.visibility = "hidden";
 }
 
-function show() {
+function showInstructions() {
   instructionsWindow.style.visibility = "visible";
 }
 
@@ -26,5 +29,5 @@ const deckCards = document.querySelector("#deck");
 deckCards.onclick = draw;
 
 function draw() {
-  console.log("deck click");
+  firstPromptWindows.style.visibility = "visible";
 }
