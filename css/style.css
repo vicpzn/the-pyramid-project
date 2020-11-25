@@ -87,7 +87,10 @@ h1 {
   padding: 20px 100px;
 }
 
-#first-prompt {
+#first-prompt,
+#second-prompt,
+#third-prompt,
+#fourth-prompt {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -262,6 +265,7 @@ h1 {
   top: 0px;
   left: calc(100% / 2 - 346px);
   width: 100vh;
+  transform: rotate(180deg);
 }
 
 #right-cards {

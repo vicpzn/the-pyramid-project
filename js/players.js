@@ -61,10 +61,10 @@ class Player {
     this.secondChoice = "";
     this.thirdChoice = "";
     this.fourthChoice = "";
-    this.firstCard = getCard();
-    this.secondCard = getCard();
-    this.thirdCard = getCard();
-    this.fourthCard = getCard();
+    this.firstCard = "";
+    this.secondCard = "";
+    this.thirdCard = "";
+    this.fourthCard = "";
   }
 
   randomChoices() {
@@ -72,19 +72,6 @@ class Player {
     this.secondChoice = secondRoundChoices[getRandomInt(2)];
     this.thirdChoice = thirdRoundChoices[getRandomInt(2)];
     this.fourthChoice = fourthRoundChoices[getRandomInt(4)];
-  }
-
-  firstGuess(arr) {
-    this.firstChoice = arr;
-  }
-  secondGuess(arr) {
-    this.secondChoice = arr;
-  }
-  thirdGuess(arr) {
-    this.thirdChoice = arr;
-  }
-  fourthGuess(arr) {
-    this.fourthChoice = arr;
   }
 
   firstRound() {
@@ -167,36 +154,26 @@ player2.randomChoices();
 player3.randomChoices();
 player4.randomChoices();
 
-player1.firstGuess("Red");
+player1.firstCard = "10 Diamonds";
+player1.secondCard = "7 Diamonds";
+player1.thirdCard = "9 Diamonds";
+player1.fourthCard = "Clubs";
+player1.firstChoice = "Black";
+player1.secondChoice = "Lower";
+player1.thirdChoice = "Outside";
+player1.fourthChoice = "Diamonds";
+
 player1.firstRound();
-player2.firstRound();
-player3.firstRound();
-player4.firstRound();
-
-player1.secondGuess("Higher");
 player1.secondRound();
-player2.secondRound();
-player3.secondRound();
-player4.secondRound();
-
-player1.thirdGuess("Inside");
 player1.thirdRound();
-player2.thirdRound();
-player3.thirdRound();
-player4.thirdRound();
-
-player1.fourthGuess("Spades");
 player1.fourthRound();
-player2.fourthRound();
-player3.fourthRound();
-player4.fourthRound();
 
-const players = [player1, player2, player3, player4];
-const scores = [];
+// const players = [player1, player2, player3, player4];
+// const scores = [];
 
-for (let i = 0; i < players.length; i++) {
-  scores.push(players[i].name, players[i].points);
-}
+// for (let i = 0; i < players.length; i++) {
+//   scores.push(players[i].name, players[i].points);
+// }
 
-console.log(player1, player2, player3, player4);
-console.log(scores);
+console.log(player1);
+// console.log(scores);

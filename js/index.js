@@ -7,6 +7,8 @@ const instructionsBtn = document.querySelector("#instructions-btn");
 const instructionsWindow = document.querySelector("#instructions");
 const instructionTopBar = document.querySelector("#instructions-link");
 
+var audio = new Audio("../flip-sound.mp3");
+
 function hide(arr) {
   arr.style.visibility = "hidden";
 }
@@ -25,11 +27,7 @@ instructionTopBar.addEventListener("click", () => show(instructionsWindow));
 const deckCards = document.querySelector("#deck");
 
 function activeDeck() {
-  deckCards.addEventListener("click", () => draw(firstPromptWindow));
-}
-
-function draw(arr) {
-  arr.style.visibility = "visible";
+  deckCards.addEventListener("click", () => show(firstPromptWindow));
 }
 
 var family = ["Spades", "Diamonds", "Clubs", "Hearts"];
@@ -108,19 +106,6 @@ class Player {
     this.fourthChoice = fourthRoundChoices[getRandomInt(4)];
   }
 
-  firstGuess(arr) {
-    this.firstChoice = arr;
-  }
-  secondGuess(arr) {
-    this.secondChoice = arr;
-  }
-  thirdGuess(arr) {
-    this.thirdChoice = arr;
-  }
-  fourthGuess(arr) {
-    this.fourthChoice = arr;
-  }
-
   firstRound() {
     if (
       (this.firstChoice === "Red" && this.firstCard.includes("Hearts")) ||
@@ -177,10 +162,10 @@ class Player {
       );
     }
 
-    if (player1.thirdChoice === "Inside" && inside()) {
-      player1.points += 30;
-    } else if (player1.thirdChoice === "Outside" && !inside()) {
-      player1.points += 30;
+    if (this.thirdChoice === "Inside" && inside()) {
+      this.points += 30;
+    } else if (this.thirdChoice === "Outside" && !inside()) {
+      this.points += 30;
     }
   }
 
@@ -190,7 +175,7 @@ class Player {
     }
   }
 
-  changeCardFileName(arr, num) {
+  changeFirstCardFileName(arr, num) {
     var index = this.firstCard.indexOf(" ");
     var pictureValue = this.firstCard.substr(0, index);
     if (pictureValue.length === 2) {
@@ -201,6 +186,49 @@ class Player {
     var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
     nameCardImg = nameCardImg.replace(/\s/g, "");
     arr[num].src = nameCardImg;
+    audio.play();
+  }
+
+  changeSecondCardFileName(arr, num) {
+    var index = this.secondCard.indexOf(" ");
+    var pictureValue = this.secondCard.substr(0, index);
+    if (pictureValue.length === 2) {
+      var pictureFamily = this.secondCard.substr(index, index);
+    } else {
+      var pictureFamily = this.secondCard.substr(index, index + 1);
+    }
+    var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
+    nameCardImg = nameCardImg.replace(/\s/g, "");
+    arr[num].src = nameCardImg;
+    audio.play();
+  }
+
+  changeThirdCardFileName(arr, num) {
+    var index = this.thirdCard.indexOf(" ");
+    var pictureValue = this.thirdCard.substr(0, index);
+    if (pictureValue.length === 2) {
+      var pictureFamily = this.thirdCard.substr(index, index);
+    } else {
+      var pictureFamily = this.thirdCard.substr(index, index + 1);
+    }
+    var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
+    nameCardImg = nameCardImg.replace(/\s/g, "");
+    arr[num].src = nameCardImg;
+    audio.play();
+  }
+
+  changeFourthCardFileName(arr, num) {
+    var index = this.fourthCard.indexOf(" ");
+    var pictureValue = this.fourthCard.substr(0, index);
+    if (pictureValue.length === 2) {
+      var pictureFamily = this.fourthCard.substr(index, index);
+    } else {
+      var pictureFamily = this.fourthCard.substr(index, index + 1);
+    }
+    var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
+    nameCardImg = nameCardImg.replace(/\s/g, "");
+    arr[num].src = nameCardImg;
+    audio.play();
   }
 }
 
@@ -224,6 +252,26 @@ const firstPromptWindow = document.querySelector("#first-prompt");
 const redBtn = document.querySelector("#red-card-btn");
 const blackBtn = document.querySelector("#black-card-btn");
 
+// SECOND PROMPT
+
+const secondPromptWindow = document.querySelector("#second-prompt");
+const higherBtn = document.querySelector("#higher-card-btn");
+const inferiorBtn = document.querySelector("#inferior-card-btn");
+
+// THIRD PROMPT
+
+const thirdPromptWindow = document.querySelector("#third-prompt");
+const insideBtn = document.querySelector("#inside-card-btn");
+const outsideBtn = document.querySelector("#outside-card-btn");
+
+// FOURTH PROMPT
+
+const fourthPromptWindow = document.querySelector("#fourth-prompt");
+const spadesBtn = document.querySelector("#spades-card-btn");
+const heartsBtn = document.querySelector("#hearts-card-btn");
+const clubsBtn = document.querySelector("#clubs-card-btn");
+const diamondsBtn = document.querySelector("#diamonds-card-btn");
+
 // SCORE INCREMENT
 
 const yourScore = document.querySelector("#score > p > span");
@@ -240,55 +288,179 @@ const cardsLeft = document.querySelectorAll("#left-cards img");
 const cardsTop = document.querySelectorAll("#top-cards img");
 const cardsRight = document.querySelectorAll("#right-cards img");
 
-function actionsPlayerOne() {
+// FIRST ROUND
+
+function actionsPlayerOneFirstRound() {
   hide(firstPromptWindow);
   player1.firstRound();
   yourScore.innerHTML = player1.points;
-  player1.changeCardFileName(cardsBottom, 0);
-  setTimeout(() => {
-    simulationFirstRound();
-  }, 1000);
+  player1.changeFirstCardFileName(cardsBottom, 0);
+  simulationFirstRound();
+  deckCards.addEventListener("click", () => show(secondPromptWindow));
 }
 
 redBtn.addEventListener("click", () => {
-  player1.firstGuess("Red");
-  actionsPlayerOne();
+  player1.firstChoice = "Red";
+  actionsPlayerOneFirstRound();
 });
 
 blackBtn.addEventListener("click", () => {
-  player1.firstGuess("Black");
-  actionsPlayerOne();
+  player1.firstChoice = "Black";
+  actionsPlayerOneFirstRound();
 });
 
 function simulationFirstRound() {
-  player2.firstRound();
-  player2.changeCardFileName(cardsLeft, 0);
-  leftScore.innerHTML = player2.points;
-  player3.firstRound();
-  player3.changeCardFileName(cardsTop, 3);
-  topScore.innerHTML = player3.points;
-  player4.firstRound();
-  player4.changeCardFileName(cardsRight, 0);
-  rightScore.innerHTML = player4.points;
+  setTimeout(() => {
+    player2.firstRound();
+    player2.changeFirstCardFileName(cardsLeft, 0);
+    leftScore.innerHTML = player2.points;
+  }, 1000);
+  setTimeout(() => {
+    player3.firstRound();
+    player3.changeFirstCardFileName(cardsTop, 0);
+    topScore.innerHTML = player3.points;
+  }, 2000);
+  setTimeout(() => {
+    player4.firstRound();
+    player4.changeFirstCardFileName(cardsRight, 0);
+    rightScore.innerHTML = player4.points;
+  }, 3000);
 }
 
-// player1.secondGuess("Higher");
-// player1.secondRound();
-// player2.secondRound();
-// player3.secondRound();
-// player4.secondRound();
+// SECOND ROUND
 
-// player1.thirdGuess("Inside");
-// player1.thirdRound();
-// player2.thirdRound();
-// player3.thirdRound();
-// player4.thirdRound();
+function actionsPlayerOneSecondRound() {
+  hide(firstPromptWindow);
+  hide(secondPromptWindow);
+  player1.secondRound();
+  yourScore.innerHTML = player1.points;
+  player1.changeSecondCardFileName(cardsBottom, 1);
+  simulationSecondRound();
+  deckCards.addEventListener("click", () => show(thirdPromptWindow));
+}
 
-// player1.fourthGuess("Spades");
-// player1.fourthRound();
-// player2.fourthRound();
-// player3.fourthRound();
-// player4.fourthRound();
+higherBtn.addEventListener("click", () => {
+  player1.secondChoice = "Higher";
+  actionsPlayerOneSecondRound();
+});
+
+inferiorBtn.addEventListener("click", () => {
+  player1.secondChoice = "Lower";
+  actionsPlayerOneSecondRound();
+});
+
+function simulationSecondRound() {
+  setTimeout(() => {
+    player2.secondRound();
+    player2.changeSecondCardFileName(cardsLeft, 1);
+    leftScore.innerHTML = player2.points;
+  }, 1000);
+  setTimeout(() => {
+    player3.secondRound();
+    player3.changeSecondCardFileName(cardsTop, 1);
+    topScore.innerHTML = player3.points;
+  }, 2000);
+  setTimeout(() => {
+    player4.secondRound();
+    player4.changeSecondCardFileName(cardsRight, 1);
+    rightScore.innerHTML = player4.points;
+  }, 3000);
+}
+
+// THIRD ROUND
+
+function actionsPlayerOneThirdRound() {
+  hide(firstPromptWindow);
+  hide(secondPromptWindow);
+  hide(thirdPromptWindow);
+  player1.thirdRound();
+  yourScore.innerHTML = player1.points;
+  player1.changeThirdCardFileName(cardsBottom, 2);
+  simulationThirdRound();
+  deckCards.addEventListener("click", () => show(fourthPromptWindow));
+}
+
+insideBtn.addEventListener("click", () => {
+  player1.thirdChoice = "Inside";
+  actionsPlayerOneThirdRound();
+});
+
+outsideBtn.addEventListener("click", () => {
+  player1.thirdChoice = "Outside";
+  actionsPlayerOneThirdRound();
+});
+
+function simulationThirdRound() {
+  setTimeout(() => {
+    player2.thirdRound();
+    player2.changeThirdCardFileName(cardsLeft, 2);
+    leftScore.innerHTML = player2.points;
+  }, 1000);
+  setTimeout(() => {
+    player3.thirdRound();
+    player3.changeThirdCardFileName(cardsTop, 2);
+    topScore.innerHTML = player3.points;
+  }, 2000);
+  setTimeout(() => {
+    player4.thirdRound();
+    player4.changeThirdCardFileName(cardsRight, 2);
+    rightScore.innerHTML = player4.points;
+  }, 3000);
+}
+
+// FOURTH ROUND
+
+function actionsPlayerOneFourthRound() {
+  hide(firstPromptWindow);
+  hide(secondPromptWindow);
+  hide(thirdPromptWindow);
+  hide(fourthPromptWindow);
+  player1.fourthRound();
+  yourScore.innerHTML = player1.points;
+  player1.changeFourthCardFileName(cardsBottom, 3);
+  simulationFourthRound();
+  deckCards.addEventListener("click", () => show(fourthPromptWindow));
+}
+
+heartsBtn.addEventListener("click", () => {
+  player1.fourthChoice = "Hearts";
+  actionsPlayerOneFourthRound();
+});
+
+clubsBtn.addEventListener("click", () => {
+  player1.fourthChoice = "Clubs";
+  actionsPlayerOneFourthRound();
+});
+
+diamondsBtn.addEventListener("click", () => {
+  player1.fourthChoice = "Diamonds";
+  actionsPlayerOneFourthRound();
+});
+
+spadesBtn.addEventListener("click", () => {
+  player1.fourthChoice = "Spades";
+  actionsPlayerOneFourthRound();
+});
+
+function simulationFourthRound() {
+  setTimeout(() => {
+    player2.fourthRound();
+    player2.changeFourthCardFileName(cardsLeft, 3);
+    leftScore.innerHTML = player2.points;
+  }, 1000);
+  setTimeout(() => {
+    player3.fourthRound();
+    player3.changeFourthCardFileName(cardsTop, 3);
+    topScore.innerHTML = player3.points;
+  }, 2000);
+  setTimeout(() => {
+    player4.fourthRound();
+    player4.changeFourthCardFileName(cardsRight, 3);
+    rightScore.innerHTML = player4.points;
+  }, 3000);
+}
+
+// FINAL RANKING
 
 // const players = [player1, player2, player3, player4];
 // const scores = [];
