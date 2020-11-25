@@ -28,7 +28,7 @@
         </div>
         <div id="welcome-mid">
           <button id="start-btn"><p>NEW GAME</p></button>
-          <button id="instructions-btn"><p>INSTRUCTIONS</p></button>
+          <button id="instructions-btn"><p>HOW TO PLAY</p></button>
         </div>
       </div>
       <div id="first-prompt">
@@ -37,7 +37,7 @@
         <button id="black-card-btn"><p>BLACK</p></button>
       </div>
       <div id="second-prompt">
-        <p>Higher or inferior:</p>
+        <p>Higher or inferior than <span></span>?</p>
         <button id="higher-card-btn"><p>Higher</p></button>
         <button id="inferior-card-btn"><p>Inferior</p></button>
       </div>
@@ -48,10 +48,19 @@
       </div>
       <div id="fourth-prompt">
         <p>Guess:</p>
-        <button id="spades-card-btn"><p>Spades</p></button>
-        <button id="hearts-card-btn"><p>Hearts</p></button>
-        <button id="clubs-card-btn"><p>Clubs</p></button>
-        <button id="diamonds-card-btn"><p>Diamonds</p></button>
+        <div>
+          <img id="spades-card-btn" src="./img/spades.png" alt="spades" />
+          <img id="diamonds-card-btn" src="./img/diamonds.png" alt="diamonds" />
+        </div>
+        <div>
+          <img id="hearts-card-btn" src="./img/hearts copy.png" alt="hearts" />
+          <img id="clubs-card-btn" src="./img/clubs.png" alt="clubs" />
+        </div>
+      </div>
+      <div id="end-of-game">
+        <p>Ranking</p>
+        <ol id="end-list"></ol>
+        <button id="restart-btn"><p>Restart</p></button>
       </div>
       <div id="instructions">
         <div id="insctructions-top">
@@ -108,15 +117,19 @@
         <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
       </div>
       <div id="score">
-        <p>Your Score: <span>0</span></p>
-        <p>Left Score: <span>0</span></p>
-        <p>Top Score: <span>0</span></p>
-        <p>Right Score: <span>0</span></p>
+        <p><span>Your</span> Score: <span>0</span></p>
+        <p><span>Left</span> Score: <span>0</span></p>
+        <p><span>Top</span> Score: <span>0</span></p>
+        <p><span>Right</span> Score: <span>0</span></p>
       </div>
       <!-- <div id="action-box">
         <p>Actions</p>
       </div> -->
+      <div id="arrow"><i class="fas fa-angle-double-right"></i></div>
       <div id="deck"><img src="./img/cards/red_back.png" alt="deck" /></div>
+      <div id="deck-busy">
+        <img src="./img/cards/red_back_busy.png" alt="deck-busy" />
+      </div>
     </div>
   </body>
 </html>

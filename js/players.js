@@ -105,6 +105,8 @@ class Player {
       playerSecondCardValue > playerFirstCardValue
     ) {
       this.points += 20;
+    } else if (playerSecondCardValue === playerFirstCardValue) {
+      this.points += 10;
     }
   }
 
@@ -121,7 +123,7 @@ class Player {
     );
     comparison.push(playerFirstCardValue, playerSecondCardValue);
     comparison.sort((a, b) => a - b);
-    console.log(comparison);
+    // console.log(comparison, playerThirdCardValue);
 
     function inside() {
       return (
@@ -130,10 +132,23 @@ class Player {
       );
     }
 
-    if (player1.thirdChoice === "Inside" && inside()) {
-      player1.points += 30;
-    } else if (player1.thirdChoice === "Outside" && !inside()) {
-      player1.points += 30;
+    function outside() {
+      if (playerThirdCardValue < comparison[0]) {
+        return true;
+      } else if (playerThirdCardValue > comparison[1]) {
+        return true;
+      }
+    }
+
+    if (this.thirdChoice === "Inside" && inside()) {
+      this.points += 30;
+    } else if (this.thirdChoice === "Outside" && outside()) {
+      this.points += 30;
+    } else if (
+      playerFirstCardValue === playerThirdCardValue ||
+      playerSecondCardValue === playerThirdCardValue
+    ) {
+      this.points += 15;
     }
   }
 
@@ -154,12 +169,12 @@ player2.randomChoices();
 player3.randomChoices();
 player4.randomChoices();
 
-player1.firstCard = "10 Diamonds";
-player1.secondCard = "7 Diamonds";
-player1.thirdCard = "9 Diamonds";
+player1.firstCard = "9 Diamonds";
+player1.secondCard = "9 Hearts";
+player1.thirdCard = "9 Spades";
 player1.fourthCard = "Clubs";
 player1.firstChoice = "Black";
-player1.secondChoice = "Lower";
+player1.secondChoice = "Higher";
 player1.thirdChoice = "Outside";
 player1.fourthChoice = "Diamonds";
 
@@ -168,12 +183,29 @@ player1.secondRound();
 player1.thirdRound();
 player1.fourthRound();
 
-// const players = [player1, player2, player3, player4];
-// const scores = [];
+player2.points = 150;
+player3.points = 50;
+player4.points = 70;
 
-// for (let i = 0; i < players.length; i++) {
-//   scores.push(players[i].name, players[i].points);
-// }
+function getScores() {
+  const players = [player1, player2, player3, player4];
+  const scores = [];
 
-console.log(player1);
-// console.log(scores);
+  for (let i = 0; i < players.length; i++) {
+    scores.push([players[i].name, players[i].points]);
+  }
+
+  scores.sort(sortScores);
+
+  function sortScores(a, b) {
+    return b[1] - a[1];
+  }
+
+  // for (let i = 0; i < scores.length; i++) {
+  //   endList.innerHTML += `<li>${scores[i][0]}${scores[i][1]}</li>`;
+  // }
+
+  console.log(scores);
+  console.log(scores[0][0], scores[0][1]);
+}
+getScores();
