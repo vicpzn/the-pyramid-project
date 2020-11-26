@@ -319,11 +319,15 @@ function randomColorCards(cards) {
   }
 }
 
-// WHEN START IS CLICKED -->
-startBtn.addEventListener("click", () => {
+function assignRandomChoices() {
   player2.randomChoices();
   player3.randomChoices();
   player4.randomChoices();
+}
+
+// WHEN START IS CLICKED -->
+startBtn.addEventListener("click", () => {
+  assignRandomChoices();
   deckCards.addEventListener("click", () => show(firstPromptWindow));
   player1.name = prompt("What is your name?");
   if (player1.name.length === 0) {
@@ -645,9 +649,7 @@ function getScores() {
 
 // RESTART THE GAME
 
-restartBtn.addEventListener("click", () => restart());
-
-function restart() {
+restartBtn.addEventListener("click", () => {
   hide(endOfGameWindow);
   deck = [];
   getDeck();
@@ -659,9 +661,7 @@ function restart() {
   topScore.innerHTML = player3.points;
   player4.resetPlayer();
   rightScore.innerHTML = player4.points;
-  player2.randomChoices();
-  player3.randomChoices();
-  player4.randomChoices();
+  assignRandomChoices();
   initCardsColorFiles();
   randomColorCards(cardsBottom);
   randomColorCards(cardsLeft);
@@ -673,4 +673,4 @@ function restart() {
   deckCards.addEventListener("click", () => hide(fourthPromptWindow));
   deckCards.addEventListener("click", () => show(firstPromptWindow));
   endList.innerHTML = "";
-}
+});

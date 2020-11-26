@@ -32,32 +32,32 @@
         </div>
       </div>
       <div id="first-prompt">
-        <p>Guess the color of the card:</p>
-        <img
-          id="red-card-btn"
-          src="./img/cards/13D.png"
-          alt="king-diamonds"
-          width="75px"
-        />
-        <img
-          id="black-card-btn"
-          src="./img/cards/13S.png"
-          alt="king-spades"
-          width="75px"
-        />
+        <p class="question">Guess the color of the card:</p>
+        <div id="first-prompt-cards">
+          <img
+            id="red-card-btn"
+            src="./img/cards/13D.png"
+            alt="king-diamonds"
+          />
+          <img
+            id="black-card-btn"
+            src="./img/cards/13S.png"
+            alt="king-spades"
+          />
+        </div>
       </div>
       <div id="second-prompt">
-        <p>Higher or inferior than <span></span>?</p>
+        <p class="question">Higher or inferior than <span></span>?</p>
         <button id="higher-card-btn"><p>Higher</p></button>
         <button id="inferior-card-btn"><p>Inferior</p></button>
       </div>
       <div id="third-prompt">
-        <p>Inside or Outside the inverval <span></span>?</p>
+        <p class="question">Inside or Outside the inverval <span></span>?</p>
         <button id="inside-card-btn"><p>Inside</p></button>
         <button id="outside-card-btn"><p>Outside</p></button>
       </div>
       <div id="fourth-prompt">
-        <p>Guess:</p>
+        <p class="question">Guess:</p>
         <div>
           <img id="spades-card-btn" src="./img/spades.png" alt="spades" />
           <img id="diamonds-card-btn" src="./img/diamonds.png" alt="diamonds" />
@@ -68,15 +68,15 @@
         </div>
       </div>
       <div id="end-of-game">
-        <p>Ranking</p>
+        <p class="question">Ranking</p>
         <ol id="end-list"></ol>
         <button id="restart-btn"><p>Restart</p></button>
       </div>
       <div id="instructions">
         <div id="insctructions-top">
-          <p id="instructions-title">INSTRUCTIONS</p>
+          <div id="instructions-title"><p>HOW TO PLAY</p></div>
           <p>
-            The Pyramid Project is a game based on randomization and is divided
+            The Pyramid Project is a game based on randomization and is played
             in 4 rounds. Each round, you will draw a random card and have some
             guesses to make:
           </p>
@@ -85,15 +85,17 @@
               Guess the color of the card. +10 points for a correct guess.
             </li>
             <li>
-              Guess if the value of the card is higher of inferior compared to
-              your first card. +20 points for a correct guess.
+              Guess if the value of the card is higher of inferior than the
+              value of your first card. +20 points for a correct guess. +10
+              points if the card is equal to the first one.
             </li>
             <li>
-              Guess if the value of the card is in or out the interval of your
-              two current cards. +30 points for a correct guess.
+              Guess if the value of the card is inside or outside the interval
+              of your two first cards. +30 points for a correct guess. +15
+              points if the drawn card is equal to one of the two first cards.
             </li>
             <li>
-              Guess the family of the card. +40 points for a correct guess.
+              Guess the symbol of the card. +40 points for a correct guess.
             </li>
           </ol>
           <p>The objective is to reach 100 points!</p>
@@ -132,9 +134,6 @@
         <p><span>Top</span> Score: <span>0</span></p>
         <p><span>Right</span> Score: <span>0</span></p>
       </div>
-      <!-- <div id="action-box">
-        <p>Actions</p>
-      </div> -->
       <div id="arrow"><i class="fas fa-angle-double-right"></i></div>
       <div id="deck"><img src="./img/cards/red_back.png" alt="deck" /></div>
       <div id="deck-busy">

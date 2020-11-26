@@ -1,0 +1,46 @@
+#first-prompt,
+#second-prompt,
+#third-prompt,
+#fourth-prompt,
+#end-of-game {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 40%;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px) opacity(100%);
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  border: 5px solid;
+  border-image: linear-gradient(
+      45deg,
+      rgb(0, 143, 104),
+      rgb(250, 224, 66),
+      rgb(250, 66, 112),
+      rgb(66, 182, 250)
+    )
+    1;
+  border-radius: 10px;
+  visibility: hidden;
+}
+
+#first-prompt-cards {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-items: center;
+}
+
+#first-prompt-cards img {
+  width: 100px;
+}
+
+#fourth-prompt img {
+  width: 75px;
+}
