@@ -289,6 +289,7 @@ startBtn.addEventListener("click", () => {
   deckCards.addEventListener("click", () => show(firstPromptWindow));
   player1.name = prompt("What is your name?");
   if (player1.name.length === 0) {
+    player1.name = "You";
     nameScore1.innerHTML = "Your";
   } else {
     nameScore1.innerHTML = `${player1.name}'s`;
