@@ -10,7 +10,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="icon" type="image/png" href="./img/favicon.png" />
   </head>
   <body>
     <div id="top-bar">
@@ -21,12 +21,12 @@
       <div id="welcome">
         <div id="welcome-top">
           <p id="welcome-to-intro">Welcome to the Pyramid Project</p>
-          <p id="what-do-you-want">What do you want to do?</p>
         </div>
-        <div id="favicon">
-          <img src="./favicon.png" alt="logo" width="200px" />
+        <div id="logo">
+          <img src="./img/favicon.png" alt="logo" width="200px" />
         </div>
         <div id="welcome-mid">
+          <div id="what-do-you-want"><p>What do you want to do?</p></div>
           <button id="start-btn"><p>NEW GAME</p></button>
           <button id="instructions-btn"><p>HOW TO PLAY</p></button>
         </div>
@@ -34,16 +34,22 @@
       <div id="first-prompt">
         <p class="question">Guess the color of the card:</p>
         <div id="first-prompt-cards">
-          <img
-            id="red-card-btn"
-            src="./img/cards/13D.png"
-            alt="king-diamonds"
-          />
-          <img
-            id="black-card-btn"
-            src="./img/cards/13S.png"
-            alt="king-spades"
-          />
+          <div id="red">
+            <img
+              id="red-card-btn"
+              src="./img/cards/13D.png"
+              alt="king-diamonds"
+            />
+            <p>RED</p>
+          </div>
+          <div id="black">
+            <img
+              id="black-card-btn"
+              src="./img/cards/13S.png"
+              alt="king-spades"
+            />
+            <p>BLACK</p>
+          </div>
         </div>
       </div>
       <div id="second-prompt">
@@ -128,11 +134,59 @@
         <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
         <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
       </div>
-      <div id="score">
+      <!-- <div id="score">
         <p><span>Your</span> Score: <span>0</span></p>
         <p><span>Left</span> Score: <span>0</span></p>
         <p><span>Top</span> Score: <span>0</span></p>
         <p><span>Right</span> Score: <span>0</span></p>
+      </div> -->
+      <div id="score-div">
+        <table id="score">
+          <thead>
+            <tr>
+              <th></th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Player 1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Player 2</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Player 3</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Player 4</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div id="arrow"><i class="fas fa-angle-double-right"></i></div>
       <div id="deck"><img src="./img/cards/red_back.png" alt="deck" /></div>

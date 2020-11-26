@@ -37,8 +37,33 @@
   align-items: center;
 }
 
+#first-prompt-cards div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+}
+
+#first-prompt-cards div:nth-child(1) p {
+  color: red;
+}
+
+#first-prompt-cards div p:hover {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
 #first-prompt-cards img {
   width: 100px;
+  margin-bottom: 5px;
+}
+
+#first-prompt-cards img:hover {
+  width: 100px;
+  margin-bottom: 5px;
+  transform: scale(0.97);
+  transition: transform 0.2s;
 }
 
 #fourth-prompt img {

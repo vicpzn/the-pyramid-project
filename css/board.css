@@ -74,15 +74,68 @@
   transform: rotate(90deg);
 }
 
+#score-div {
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: calc(100% / 2 - 65px);
+  left: calc(100% / 2 + 80px);
+  border: 1px solid;
+  border-image: linear-gradient(
+      45deg,
+      rgb(0, 143, 104),
+      rgb(250, 224, 66),
+      rgb(250, 66, 112),
+      rgb(66, 182, 250)
+    )
+    1;
+}
+
 #score {
   background-color: white;
   font-family: Roboto;
-  position: absolute;
-  border-radius: 5%;
   padding: 10px;
-  top: calc(100% / 2 - 45px);
-  left: calc(100% / 2 + 100px);
+}
+
+#score > tbody tr > td:first-child {
+  text-align: left;
+  margin-right: 5px;
+}
+
+#score > tbody tr > td:last-child {
   text-align: right;
+}
+
+#score > tbody > tr > td:nth-child(2),
+#score > tbody > tr > td:nth-child(3),
+#score > tbody > tr > td:nth-child(4),
+#score > tbody > tr > td:nth-child(5),
+#score > tbody > tr:nth-child(2) > td:nth-child(2),
+#score > tbody > tr:nth-child(2) > td:nth-child(3),
+#score > tbody > tr:nth-child(2) > td:nth-child(4),
+#score > tbody > tr:nth-child(2) > td:nth-child(5),
+#score > tbody > tr:nth-child(3) > td:nth-child(2),
+#score > tbody > tr:nth-child(3) > td:nth-child(3),
+#score > tbody > tr:nth-child(3) > td:nth-child(4),
+#score > tbody > tr:nth-child(3) > td:nth-child(5),
+#score > tbody > tr:nth-child(4) > td:nth-child(2),
+#score > tbody > tr:nth-child(4) > td:nth-child(3),
+#score > tbody > tr:nth-child(4) > td:nth-child(4),
+#score > tbody > tr:nth-child(4) > td:nth-child(5) {
+  width: 20px;
+  text-align: center;
+}
+
+#green-check {
+  color: green;
+}
+
+#orange-check {
+  color: orange;
+}
+
+#red-cross {
+  color: red;
 }
 
 .front-card {

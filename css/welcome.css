@@ -37,8 +37,12 @@
   text-transform: uppercase;
 }
 
-#welcome-top #what-do-you-want {
-  font-size: 1em;
+#what-do-you-want {
+  display: flex;
+  justify-content: center;
+  font-family: Roboto;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 #welcome-top p {
@@ -56,8 +60,12 @@
 }
 
 #start-btn:hover {
-  background-color: lightgreen;
+  background-color: rgb(221, 221, 221);
+  border-image: linear-gradient(135deg, rgb(0, 143, 104), rgb(66, 250, 250)) 1;
+  transform: scale(0.97);
+  transition: transform 0.2s;
 }
+
 #start-btn:active {
   transform: scale(0.97);
   transition: transform 0.2s;
@@ -74,7 +82,10 @@
 }
 
 #instructions-btn:hover {
-  background-color: rgb(238, 192, 238);
+  background-color: rgb(221, 221, 221);
+  border-image: linear-gradient(135deg, rgb(224, 22, 180), rgb(167, 66, 250)) 1;
+  transform: scale(0.97);
+  transition: transform 0.2s;
 }
 
 #instructions-btn:active {
@@ -82,6 +93,6 @@
   transition: transform 0.2s;
 }
 
-#favicon {
+#logo {
   animation: growth 1s infinite;
 }

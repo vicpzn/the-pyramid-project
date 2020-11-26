@@ -134,6 +134,10 @@ class Player {
     this.secondCard = getCard();
     this.thirdCard = getCard();
     this.fourthCard = getCard();
+    this.firstRoundPoints = "";
+    this.secondRoundPoints = "";
+    this.thirdRoundPoints = "";
+    this.fourthRoundPoints = "";
   }
 
   randomChoices() {
@@ -149,11 +153,15 @@ class Player {
       (this.firstChoice === "Red" && this.firstCard.includes("Diamonds"))
     ) {
       this.points += 10;
+      this.firstRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
     } else if (
       (this.firstChoice === "Black" && this.firstCard.includes("Clubs")) ||
       (this.firstChoice === "Black" && this.firstCard.includes("Spades"))
     ) {
       this.points += 10;
+      this.firstRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
+    } else {
+      this.firstRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
     }
   }
 
@@ -169,13 +177,18 @@ class Player {
       playerSecondCardValue < playerFirstCardValue
     ) {
       this.points += 20;
+      this.secondRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
     } else if (
       this.secondChoice === "Higher" &&
       playerSecondCardValue > playerFirstCardValue
     ) {
       this.points += 20;
+      this.secondRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
     } else if (playerSecondCardValue === playerFirstCardValue) {
       this.points += 10;
+      this.secondRoundPoints = `<i class="fas fa-check" id="orange-check"></i>`;
+    } else {
+      this.secondRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
     }
   }
 
@@ -210,19 +223,27 @@ class Player {
 
     if (this.thirdChoice === "Inside" && inside()) {
       this.points += 30;
+      this.thirdRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
     } else if (this.thirdChoice === "Outside" && outside()) {
       this.points += 30;
+      this.thirdRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
     } else if (
       playerFirstCardValue === playerThirdCardValue ||
       playerSecondCardValue === playerThirdCardValue
     ) {
       this.points += 15;
+      this.thirdRoundPoints = `<i class="fas fa-check" id="orange-check"></i>`;
+    } else {
+      this.thirdRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
     }
   }
 
   fourthRound() {
     if (this.fourthCard.includes(this.fourthChoice)) {
       this.points += 40;
+      this.fourthRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
+    } else {
+      this.fourthRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
     }
   }
 
@@ -287,7 +308,7 @@ class Player {
     const index = namesForComputer.indexOf(newName);
     namesForComputer.splice(index, 1);
     this.name = newName;
-    query.innerHTML = `${player.name}'s`;
+    query.innerHTML = `${player.name}`;
   }
 
   resetPlayer() {
@@ -300,6 +321,10 @@ class Player {
     this.secondCard = getCard();
     this.thirdCard = getCard();
     this.fourthCard = getCard();
+    this.firstRoundPoints = 0;
+    this.secondRoundPoints = 0;
+    this.thirdRoundPoints = 0;
+    this.fourthRoundPoints = 0;
   }
 }
 
@@ -334,7 +359,7 @@ startBtn.addEventListener("click", () => {
     player1.name = "You";
     nameScore1.innerHTML = "Your";
   } else {
-    nameScore1.innerHTML = `${player1.name}'s`;
+    nameScore1.innerHTML = `${player1.name}`;
   }
   player2.assignRandomName(nameScore2, player2);
   player3.assignRandomName(nameScore3, player3);
@@ -348,8 +373,8 @@ startBtn.addEventListener("click", () => {
 // FIRST PROMPT
 
 const firstPromptWindow = document.querySelector("#first-prompt");
-const redBtn = document.querySelector("#red-card-btn");
-const blackBtn = document.querySelector("#black-card-btn");
+const redBtn = document.querySelector("#red");
+const blackBtn = document.querySelector("#black");
 
 // SECOND PROMPT
 
@@ -377,25 +402,78 @@ const restartBtn = document.querySelector("#restart-btn");
 
 // SCORE INCREMENT
 
-const nameScore1 = document.querySelector("#score > p > span:nth-child(1)");
+const nameScore1 = document.querySelector("#score > tbody > tr > td");
 const nameScore2 = document.querySelector(
-  "#score > p:nth-child(2) > span:nth-child(1)"
+  "#score > tbody > tr:nth-child(2) > td"
 );
 const nameScore3 = document.querySelector(
-  "#score > p:nth-child(3) > span:nth-child(1)"
+  "#score > tbody > tr:nth-child(3) > td"
 );
 const nameScore4 = document.querySelector(
-  "#score > p:nth-child(4) > span:nth-child(1)"
+  "#score > tbody > tr:nth-child(4) > td"
 );
-const yourScore = document.querySelector("#score > p > span:nth-child(2)");
+
+const yourScore = document.querySelector("#score > tbody > tr > td:last-child");
 const leftScore = document.querySelector(
-  "#score > p:nth-child(2) > span:nth-child(2)"
+  "#score > tbody > tr:nth-child(2) > td:last-child"
 );
 const topScore = document.querySelector(
-  "#score > p:nth-child(3) > span:nth-child(2)"
+  "#score > tbody > tr:nth-child(3) > td:last-child"
 );
 const rightScore = document.querySelector(
-  "#score > p:nth-child(4) > span:nth-child(2)"
+  "#score > tbody > tr:nth-child(4) > td:last-child"
+);
+
+const playerOneFirstRoundScore = document.querySelector(
+  "#score > tbody > tr > td:nth-child(2)"
+);
+const playerTwoFirstRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(2) > td:nth-child(2)"
+);
+const playerThreeFirstRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(3) > td:nth-child(2)"
+);
+const playerFourFirstRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(4) > td:nth-child(2)"
+);
+
+const playerOneSecondRoundScore = document.querySelector(
+  "#score > tbody > tr > td:nth-child(3)"
+);
+const playerTwoSecondRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(2) > td:nth-child(3)"
+);
+const playerThreeSecondRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(3) > td:nth-child(3)"
+);
+const playerFourSecondRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(4) > td:nth-child(3)"
+);
+
+const playerOneThirdRoundScore = document.querySelector(
+  "#score > tbody > tr > td:nth-child(4)"
+);
+const playerTwoThirdRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(2) > td:nth-child(4)"
+);
+const playerThreeThirdRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(3) > td:nth-child(4)"
+);
+const playerFourThirdRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(4) > td:nth-child(4)"
+);
+
+const playerOneFourthRoundScore = document.querySelector(
+  "#score > tbody > tr > td:nth-child(5)"
+);
+const playerTwoFourthRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(2) > td:nth-child(5)"
+);
+const playerThreeFourthRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(3) > td:nth-child(5)"
+);
+const playerFourFourthRoundScore = document.querySelector(
+  "#score > tbody > tr:nth-child(4) > td:nth-child(5)"
 );
 
 // FIRST ROUND
@@ -404,6 +482,7 @@ function actionsPlayerOneFirstRound() {
   hide(firstPromptWindow);
   player1.firstRound();
   yourScore.innerHTML = player1.points;
+  playerOneFirstRoundScore.innerHTML = player1.firstRoundPoints;
   player1.changeFirstCardFileName(cardsBottom, 0);
   simulationFirstRound();
   deckCards.addEventListener("click", () => show(secondPromptWindow));
@@ -453,16 +532,19 @@ function simulationFirstRound() {
     player2.firstRound();
     player2.changeFirstCardFileName(cardsLeft, 0);
     leftScore.innerHTML = player2.points;
+    playerTwoFirstRoundScore.innerHTML = player2.firstRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.firstRound();
     player3.changeFirstCardFileName(cardsTop, 0);
     topScore.innerHTML = player3.points;
+    playerThreeFirstRoundScore.innerHTML = player3.firstRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.firstRound();
     player4.changeFirstCardFileName(cardsRight, 0);
     rightScore.innerHTML = player4.points;
+    playerFourFirstRoundScore.innerHTML = player4.firstRoundPoints;
   }, 3000);
   setTimeout(() => {
     yourTurn();
@@ -476,6 +558,7 @@ function actionsPlayerOneSecondRound() {
   hide(secondPromptWindow);
   player1.secondRound();
   yourScore.innerHTML = player1.points;
+  playerOneSecondRoundScore.innerHTML = player1.secondRoundPoints;
   player1.changeSecondCardFileName(cardsBottom, 1);
   simulationSecondRound();
   deckCards.addEventListener("click", () => show(thirdPromptWindow));
@@ -507,16 +590,19 @@ function simulationSecondRound() {
     player2.secondRound();
     player2.changeSecondCardFileName(cardsLeft, 1);
     leftScore.innerHTML = player2.points;
+    playerTwoSecondRoundScore.innerHTML = player2.secondRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.secondRound();
     player3.changeSecondCardFileName(cardsTop, 1);
     topScore.innerHTML = player3.points;
+    playerThreeSecondRoundScore.innerHTML = player3.secondRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.secondRound();
     player4.changeSecondCardFileName(cardsRight, 1);
     rightScore.innerHTML = player4.points;
+    playerFourSecondRoundScore.innerHTML = player4.secondRoundPoints;
   }, 3000);
   setTimeout(() => {
     yourTurn();
@@ -531,6 +617,7 @@ function actionsPlayerOneThirdRound() {
   hide(thirdPromptWindow);
   player1.thirdRound();
   yourScore.innerHTML = player1.points;
+  playerOneThirdRoundScore.innerHTML = player1.thirdRoundPoints;
   player1.changeThirdCardFileName(cardsBottom, 2);
   simulationThirdRound();
   deckCards.addEventListener("click", () => show(fourthPromptWindow));
@@ -552,16 +639,19 @@ function simulationThirdRound() {
     player2.thirdRound();
     player2.changeThirdCardFileName(cardsLeft, 2);
     leftScore.innerHTML = player2.points;
+    playerTwoThirdRoundScore.innerHTML = player2.thirdRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.thirdRound();
     player3.changeThirdCardFileName(cardsTop, 2);
     topScore.innerHTML = player3.points;
+    playerThreeThirdRoundScore.innerHTML = player3.thirdRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.thirdRound();
     player4.changeThirdCardFileName(cardsRight, 2);
     rightScore.innerHTML = player4.points;
+    playerFourThirdRoundScore.innerHTML = player4.thirdRoundPoints;
   }, 3000);
   setTimeout(() => {
     yourTurn();
@@ -577,6 +667,7 @@ function actionsPlayerOneFourthRound() {
   hide(fourthPromptWindow);
   player1.fourthRound();
   yourScore.innerHTML = player1.points;
+  playerOneFourthRoundScore.innerHTML = player1.fourthRoundPoints;
   player1.changeFourthCardFileName(cardsBottom, 3);
   simulationFourthRound();
 }
@@ -607,16 +698,19 @@ function simulationFourthRound() {
     player2.fourthRound();
     player2.changeFourthCardFileName(cardsLeft, 3);
     leftScore.innerHTML = player2.points;
+    playerTwoFourthRoundScore.innerHTML = player2.fourthRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.fourthRound();
     player3.changeFourthCardFileName(cardsTop, 3);
     topScore.innerHTML = player3.points;
+    playerThreeFourthRoundScore.innerHTML = player3.fourthRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.fourthRound();
     player4.changeFourthCardFileName(cardsRight, 3);
     rightScore.innerHTML = player4.points;
+    playerFourFourthRoundScore.innerHTML = player4.fourthRoundPoints;
   }, 3000);
   setTimeout(() => {
     show(endOfGameWindow);
@@ -654,13 +748,29 @@ restartBtn.addEventListener("click", () => {
   deck = [];
   getDeck();
   player1.resetPlayer();
-  yourScore.innerHTML = player1.points;
+  yourScore.innerHTML = 0;
   player2.resetPlayer();
-  leftScore.innerHTML = player2.points;
+  leftScore.innerHTML = 0;
   player3.resetPlayer();
-  topScore.innerHTML = player3.points;
+  topScore.innerHTML = 0;
   player4.resetPlayer();
-  rightScore.innerHTML = player4.points;
+  rightScore.innerHTML = 0;
+  playerOneFirstRoundScore.innerHTML = "";
+  playerOneSecondRoundScore.innerHTML = "";
+  playerOneThirdRoundScore.innerHTML = "";
+  playerOneFourthRoundScore.innerHTML = "";
+  playerTwoFirstRoundScore.innerHTML = "";
+  playerTwoSecondRoundScore.innerHTML = "";
+  playerTwoThirdRoundScore.innerHTML = "";
+  playerTwoFourthRoundScore.innerHTML = "";
+  playerThreeFirstRoundScore.innerHTML = "";
+  playerThreeSecondRoundScore.innerHTML = "";
+  playerThreeThirdRoundScore.innerHTML = "";
+  playerThreeFourthRoundScore.innerHTML = "";
+  playerFourFirstRoundScore.innerHTML = "";
+  playerFourSecondRoundScore.innerHTML = "";
+  playerFourThirdRoundScore.innerHTML = "";
+  playerFourFourthRoundScore.innerHTML = "";
   assignRandomChoices();
   initCardsColorFiles();
   randomColorCards(cardsBottom);

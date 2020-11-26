@@ -13,10 +13,13 @@
 
 #end-list li:nth-child(1) {
   color: green;
+  font-size: 30px;
 }
 #end-list li:nth-child(2) {
   color: orange;
+  font-size: 26px;
 }
 #end-list li:nth-child(3) {
   color: red;
+  font-size: 22px;
 }
