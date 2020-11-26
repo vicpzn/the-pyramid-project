@@ -200,9 +200,8 @@ h1 {
   transition: transform 0.2s;
 }
 
-#red-card-btn {
+/* #red-card-btn {
   font-family: Roboto;
-  /* background-color: plum; */
   width: 200px;
   height: 75px;
   font-size: 1.5em;
@@ -221,7 +220,6 @@ h1 {
 
 #black-card-btn {
   font-family: Roboto;
-  /* background-color: plum; */
   width: 200px;
   height: 75px;
   font-size: 1.5em;
@@ -236,7 +234,7 @@ h1 {
 #black-card-btn:active {
   transform: scale(0.97);
   transition: transform 0.2s;
-}
+} */
 
 @keyframes growth {
   0% {
