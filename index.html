@@ -12,12 +12,40 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" type="image/png" href="./img/favicon.png" />
   </head>
+  <header id="top-bar">
+    <h1>The Pyramid Project</h1>
+    <div id="instructions-link"><i class="far fa-question-circle"></i></div>
+  </header>
   <body>
-    <div id="top-bar">
-      <h1>The Pyramid Project</h1>
-      <div id="instructions-link"><i class="far fa-question-circle"></i></div>
-    </div>
     <div id="board">
+      <div id="top-cards">
+        <div id="name-top"><p></p></div>
+        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
+      </div>
+      <div id="right-cards">
+        <div id="name-right"><p></p></div>
+        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
+      </div>
+      <div id="bottom-cards">
+        <div id="name-bottom"><p></p></div>
+        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
+      </div>
+      <div id="left-cards">
+        <div id="name-left"><p></p></div>
+        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
+        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
+      </div>
       <div id="welcome">
         <div id="welcome-top">
           <p id="welcome-to-intro">Welcome to the Pyramid Project</p>
@@ -110,36 +138,6 @@
           <button id="go-back-btn"><p>GO BACK</p></button>
         </div>
       </div>
-      <div id="top-cards">
-        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/green_back.png" alt="card" />
-      </div>
-      <div id="right-cards">
-        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/yellow_back.png" alt="card" />
-      </div>
-      <div id="bottom-cards">
-        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/purple_back.png" alt="card" />
-      </div>
-      <div id="left-cards">
-        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
-        <img class="front-card" src="./img/cards/blue_back.png" alt="card" />
-      </div>
-      <!-- <div id="score">
-        <p><span>Your</span> Score: <span>0</span></p>
-        <p><span>Left</span> Score: <span>0</span></p>
-        <p><span>Top</span> Score: <span>0</span></p>
-        <p><span>Right</span> Score: <span>0</span></p>
-      </div> -->
       <div id="score-div">
         <table id="score">
           <thead>

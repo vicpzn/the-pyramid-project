@@ -45,26 +45,26 @@ const deckCardsBusy = document.querySelector("#deck-busy > img");
 const arrowSelection = document.querySelector("#arrow");
 
 var namesForComputer = [
-  "Joshua",
-  "Joseph",
-  "Daniel",
-  "Matthew",
-  "James",
-  "Alexander",
-  "Thomas",
   "Michael",
-  "Benjamin",
-  "John",
-  "Andrew",
+  "Daniel",
+  "Christopher",
   "David",
-  "Jonathan",
+  "James",
+  "Joshua",
+  "Andrew",
+  "Matthew",
   "Nicholas",
-  "Aaron",
-  "Jacob",
-  "Samuel",
-  "Adam",
-  "Nathan",
-  "Luke",
+  "Robert",
+  "Elizabeth",
+  "Samantha",
+  "Brittany",
+  "Jessica",
+  "Ashley",
+  "Nicole",
+  "Jennifer",
+  "Stephanie",
+  "Amanda",
+  "Sarah",
 ];
 
 var family = ["Spades", "Diamonds", "Clubs", "Hearts"];
@@ -350,6 +350,18 @@ function assignRandomChoices() {
   player4.randomChoices();
 }
 
+const nameBoardOne = document.querySelector("#name-bottom");
+const nameBoardTwo = document.querySelector("#name-left");
+const nameBoardThree = document.querySelector("#name-top");
+const nameBoardFour = document.querySelector("#name-right");
+
+function namesBoard() {
+  nameBoardOne.innerHTML = player1.name;
+  nameBoardTwo.innerHTML = player2.name;
+  nameBoardThree.innerHTML = player3.name;
+  nameBoardFour.innerHTML = player4.name;
+}
+
 // WHEN START IS CLICKED -->
 startBtn.addEventListener("click", () => {
   assignRandomChoices();
@@ -368,6 +380,7 @@ startBtn.addEventListener("click", () => {
   randomColorCards(cardsLeft);
   randomColorCards(cardsTop);
   randomColorCards(cardsRight);
+  namesBoard();
 });
 
 // FIRST PROMPT

@@ -43,12 +43,6 @@
   margin-bottom: 10px;
 }
 
-#instructions-link {
-  position: fixed;
-  top: 25px;
-  left: 10px;
-}
-
 #instruction-title {
   font-family: Roboto;
 }
