@@ -1,13 +1,11 @@
-// WELCOME WINDOW & TOP BAR
-
-const startBtn = document.querySelector("#start-btn");
-const welcomeWindow = document.querySelector("#welcome");
-const goBackBtn = document.querySelector("#go-back-btn");
 const instructionsBtn = document.querySelector("#instructions-btn");
 const instructionsWindow = document.querySelector("#instructions");
 const instructionTopBar = document.querySelector("#instructions-link");
+const startBtn = document.querySelector("#start-btn");
+const welcomeWindow = document.querySelector("#welcome");
+const goBackBtn = document.querySelector("#go-back-btn");
 
-var audio = new Audio("../flip-sound.mp3");
+var audio = new Audio("./flip-sound.mp3");
 
 const cardsBottom = document.querySelectorAll("#bottom-cards img");
 const cardsLeft = document.querySelectorAll("#left-cards img");
@@ -319,7 +317,6 @@ function randomColorCards(cards) {
   for (let i = 0; i < cards.length; i++) {
     cards[i].src = color;
   }
-  console.log(cardsBottom);
 }
 
 // WHEN START IS CLICKED -->
@@ -406,6 +403,24 @@ function actionsPlayerOneFirstRound() {
   player1.changeFirstCardFileName(cardsBottom, 0);
   simulationFirstRound();
   deckCards.addEventListener("click", () => show(secondPromptWindow));
+  getTheValue();
+}
+
+function getTheValue() {
+  const spanHigher = document.querySelector("#second-prompt > p > span");
+  var index = player1.firstCard.indexOf(" ");
+  var pictureValue = player1.firstCard.substr(0, index);
+  if (pictureValue == 11) {
+    spanHigher.innerHTML = "jack";
+  } else if (pictureValue == 12) {
+    spanHigher.innerHTML = "queen";
+  } else if (pictureValue == 13) {
+    spanHigher.innerHTML = "king";
+  } else if (pictureValue == 14) {
+    spanHigher.innerHTML = "ace";
+  } else {
+    spanHigher.innerHTML = pictureValue;
+  }
 }
 
 redBtn.addEventListener("click", () => {
@@ -460,6 +475,16 @@ function actionsPlayerOneSecondRound() {
   player1.changeSecondCardFileName(cardsBottom, 1);
   simulationSecondRound();
   deckCards.addEventListener("click", () => show(thirdPromptWindow));
+  getTheValues();
+}
+
+function getTheValues() {
+  const spanInterval = document.querySelector("#third-prompt > p > span");
+  var index = player1.firstCard.indexOf(" ");
+  var pictureValue = player1.firstCard.substr(0, index);
+  var index2 = player1.secondCard.indexOf(" ");
+  var pictureValue2 = player1.secondCard.substr(0, index2);
+  spanInterval.innerHTML = `[${pictureValue};${pictureValue2}]`;
 }
 
 higherBtn.addEventListener("click", () => {
