@@ -7,7 +7,25 @@ const instructionsBtn = document.querySelector("#instructions-btn");
 const instructionsWindow = document.querySelector("#instructions");
 const instructionTopBar = document.querySelector("#instructions-link");
 
-var audio = new Audio("./flip-sound.mp3");
+var audio = new Audio("../flip-sound.mp3");
+
+const cardsBottom = document.querySelectorAll("#bottom-cards img");
+const cardsLeft = document.querySelectorAll("#left-cards img");
+const cardsTop = document.querySelectorAll("#top-cards img");
+const cardsRight = document.querySelectorAll("#right-cards img");
+
+var cardsColorFiles = [];
+
+function initCardsColorFiles() {
+  cardsColorFiles.push(
+    "./img/cards/green_back.png",
+    "./img/cards/yellow_back.png",
+    "./img/cards/purple_back.png",
+    "./img/cards/blue_back.png"
+  );
+}
+
+initCardsColorFiles();
 
 function hide(arr) {
   arr.style.visibility = "hidden";
@@ -176,7 +194,6 @@ class Player {
     );
     comparison.push(playerFirstCardValue, playerSecondCardValue);
     comparison.sort((a, b) => a - b);
-    console.log(comparison);
 
     function inside() {
       return (
@@ -274,12 +291,36 @@ class Player {
     this.name = newName;
     query.innerHTML = `${player.name}'s`;
   }
+
+  resetPlayer() {
+    this.points = 0;
+    this.firstChoice = "";
+    this.secondChoice = "";
+    this.thirdChoice = "";
+    this.fourthChoice = "";
+    this.firstCard = getCard();
+    this.secondCard = getCard();
+    this.thirdCard = getCard();
+    this.fourthCard = getCard();
+  }
 }
 
 const player1 = new Player();
 const player2 = new Player();
 const player3 = new Player();
 const player4 = new Player();
+
+// Assign random cards color
+
+function randomColorCards(cards) {
+  var color = cardsColorFiles[getRandomInt(cardsColorFiles.length)];
+  const index = cardsColorFiles.indexOf(color);
+  cardsColorFiles.splice(index, 1);
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].src = color;
+  }
+  console.log(cardsBottom);
+}
 
 // WHEN START IS CLICKED -->
 startBtn.addEventListener("click", () => {
@@ -297,6 +338,10 @@ startBtn.addEventListener("click", () => {
   player2.assignRandomName(nameScore2, player2);
   player3.assignRandomName(nameScore3, player3);
   player4.assignRandomName(nameScore4, player4);
+  randomColorCards(cardsBottom);
+  randomColorCards(cardsLeft);
+  randomColorCards(cardsTop);
+  randomColorCards(cardsRight);
 });
 
 // FIRST PROMPT
@@ -327,6 +372,7 @@ const diamondsBtn = document.querySelector("#diamonds-card-btn");
 
 // END OF GAME
 const endOfGameWindow = document.querySelector("#end-of-game");
+const restartBtn = document.querySelector("#restart-btn");
 
 // SCORE INCREMENT
 
@@ -350,15 +396,6 @@ const topScore = document.querySelector(
 const rightScore = document.querySelector(
   "#score > p:nth-child(4) > span:nth-child(2)"
 );
-
-function disableDeck() {
-  deckCards.removeEventListener("click", () => draw(firstPromptWindow));
-}
-
-const cardsBottom = document.querySelectorAll("#bottom-cards img");
-const cardsLeft = document.querySelectorAll("#left-cards img");
-const cardsTop = document.querySelectorAll("#top-cards img");
-const cardsRight = document.querySelectorAll("#right-cards img");
 
 // FIRST ROUND
 
@@ -513,7 +550,6 @@ function actionsPlayerOneFourthRound() {
   yourScore.innerHTML = player1.points;
   player1.changeFourthCardFileName(cardsBottom, 3);
   simulationFourthRound();
-  deckCards.addEventListener("click", () => show(endOfGameWindow));
 }
 
 heartsBtn.addEventListener("click", () => {
@@ -580,20 +616,36 @@ function getScores() {
   for (let i = 0; i < scores.length; i++) {
     endList.innerHTML += `<li>${scores[i][0]} ${scores[i][1]} points</li>`;
   }
-
-  console.log(scores);
 }
 
-// const cardsColorFiles = [
-//   "./img/cards/green_back.png",
-//   "./img/cards/yellow_back.png",
-//   "./img/cards/purple_back.png",
-//   "./img/cards/blue_back.png",
-// ];
+// RESTART THE GAME
 
-// function randomColorCards() {
-//   var color = cardsColorFiles[getRandomInt(cardsColorFiles.length)];
-//   const index = cardsColorFiles.indexOf(color);
-//   cardsColorFiles.splice(index, 1);
-//   return color;
-// }
+restartBtn.addEventListener("click", () => restart());
+
+function restart() {
+  hide(endOfGameWindow);
+  deck = [];
+  getDeck();
+  player1.resetPlayer();
+  yourScore.innerHTML = player1.points;
+  player2.resetPlayer();
+  leftScore.innerHTML = player2.points;
+  player3.resetPlayer();
+  topScore.innerHTML = player3.points;
+  player4.resetPlayer();
+  rightScore.innerHTML = player4.points;
+  player2.randomChoices();
+  player3.randomChoices();
+  player4.randomChoices();
+  initCardsColorFiles();
+  randomColorCards(cardsBottom);
+  randomColorCards(cardsLeft);
+  randomColorCards(cardsTop);
+  randomColorCards(cardsRight);
+  yourTurn();
+  deckCards.addEventListener("click", () => hide(secondPromptWindow));
+  deckCards.addEventListener("click", () => hide(thirdPromptWindow));
+  deckCards.addEventListener("click", () => hide(fourthPromptWindow));
+  deckCards.addEventListener("click", () => show(firstPromptWindow));
+  endList.innerHTML = "";
+}
