@@ -7,7 +7,7 @@ const instructionsBtn = document.querySelector("#instructions-btn");
 const instructionsWindow = document.querySelector("#instructions");
 const instructionTopBar = document.querySelector("#instructions-link");
 
-var audio = new Audio("../flip-sound.mp3");
+var audio = new Audio("./flip-sound.mp3");
 
 function hide(arr) {
   arr.style.visibility = "hidden";
