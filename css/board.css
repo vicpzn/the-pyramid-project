@@ -124,6 +124,7 @@
 #score > tbody > tr:nth-child(4) > td:nth-child(4),
 #score > tbody > tr:nth-child(4) > td:nth-child(5) {
   width: 20px;
+  height: 21px;
   text-align: center;
 }
 
@@ -135,8 +136,9 @@
   color: orange;
 }
 
-#red-cross {
+#red-mark {
   color: red;
+  font-size: 20px;
 }
 
 .front-card {

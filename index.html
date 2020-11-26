@@ -10,7 +10,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="icon" type="image/png" href="./img/favicon.png" />
+    <link rel="icon" type="image/png" href="./img/logo.png" />
   </head>
   <header id="top-bar">
     <h1>The Pyramid Project</h1>
@@ -51,7 +51,7 @@
           <p id="welcome-to-intro">Welcome to the Pyramid Project</p>
         </div>
         <div id="logo">
-          <img src="./img/favicon.png" alt="logo" width="200px" />
+          <img src="./img/logo.png" alt="logo" />
         </div>
         <div id="welcome-mid">
           <div id="what-do-you-want"><p>What do you want to do?</p></div>
@@ -81,62 +81,80 @@
         </div>
       </div>
       <div id="second-prompt">
-        <p class="question">Higher or inferior than <span></span>?</p>
-        <button id="higher-card-btn"><p>Higher</p></button>
-        <button id="inferior-card-btn"><p>Inferior</p></button>
+        <p class="question">
+          Guess the value of the card, higher or less than <span></span>? <br />
+          (Ace is the highest card)
+        </p>
+        <div id="second-prompt-btn">
+          <button id="inferior-card-btn"><p>LESS</p></button>
+          <button id="higher-card-btn"><p>HIGHER</p></button>
+        </div>
       </div>
       <div id="third-prompt">
         <p class="question">Inside or Outside the inverval <span></span>?</p>
-        <button id="inside-card-btn"><p>Inside</p></button>
-        <button id="outside-card-btn"><p>Outside</p></button>
+        <div id="third-prompt-btn">
+          <button id="inside-card-btn"><p>INSIDE</p></button>
+          <button id="outside-card-btn"><p>OUTSIDE</p></button>
+        </div>
       </div>
       <div id="fourth-prompt">
-        <p class="question">Guess:</p>
+        <p class="question">Guess the symbol of the card:</p>
         <div>
           <img id="spades-card-btn" src="./img/spades.png" alt="spades" />
           <img id="diamonds-card-btn" src="./img/diamonds.png" alt="diamonds" />
         </div>
         <div>
-          <img id="hearts-card-btn" src="./img/hearts copy.png" alt="hearts" />
+          <img id="hearts-card-btn" src="./img/hearts.png" alt="hearts" />
           <img id="clubs-card-btn" src="./img/clubs.png" alt="clubs" />
         </div>
       </div>
       <div id="end-of-game">
         <p class="question">Ranking</p>
         <ol id="end-list"></ol>
-        <button id="restart-btn"><p>Restart</p></button>
+        <button id="restart-btn"><p>RESTART</p></button>
       </div>
       <div id="instructions">
         <div id="insctructions-top">
           <div id="instructions-title"><p>HOW TO PLAY</p></div>
+          <p>The Pyramid Project is a card game played in 4 rounds.</p>
           <p>
-            The Pyramid Project is a game based on randomization and is played
-            in 4 rounds. Each round, you will draw a random card and have some
-            guesses to make:
+            Each round, you will draw a random card and have some guesses to
+            make:
           </p>
           <ol>
             <li>
-              Guess the color of the card. +10 points for a correct guess.
+              Guess the color of the card: <br />
+              <i class="fas fa-check" id="green-check"></i> +10 points for a
+              correct guess
             </li>
             <li>
               Guess if the value of the card is higher of inferior than the
-              value of your first card. +20 points for a correct guess. +10
-              points if the card is equal to the first one.
+              value of your first card: <br />
+              <i class="fas fa-check" id="green-check"></i> +20 points for a
+              correct guess <br />
+              <i class="fas fa-check" id="orange-check"></i> +10 points if the
+              card is equal to the first one
             </li>
             <li>
               Guess if the value of the card is inside or outside the interval
-              of your two first cards. +30 points for a correct guess. +15
-              points if the drawn card is equal to one of the two first cards.
+              of your two first cards: <br />
+              <i class="fas fa-check" id="green-check"></i> +30 points for a
+              correct guess <br />
+              <i class="fas fa-check" id="orange-check"></i> +15 points if the
+              drawn card is equal to one of the two first cards
             </li>
             <li>
-              Guess the symbol of the card. +40 points for a correct guess.
+              Guess the symbol of the card: <br />
+              <i class="fas fa-check" id="green-check"></i> +40 points for a
+              correct guess
             </li>
           </ol>
-          <p>The objective is to reach 100 points!</p>
+          <p id="goal">The goal is to reach 100 points!</p>
         </div>
         <div id="instructions-mid">
           <button id="go-back-btn"><p>GO BACK</p></button>
         </div>
+        <p>Created by Victorien Provenzano</p>
       </div>
       <div id="score-div">
         <table id="score">

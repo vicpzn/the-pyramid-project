@@ -13,13 +13,32 @@
 
 #end-list li:nth-child(1) {
   color: green;
-  font-size: 30px;
 }
 #end-list li:nth-child(2) {
   color: orange;
-  font-size: 26px;
 }
 #end-list li:nth-child(3) {
   color: red;
-  font-size: 22px;
+}
+
+#restart-btn {
+  font-family: Roboto;
+  width: 200px;
+  height: 75px;
+  font-size: 1.5em;
+  border-radius: 8px;
+  border: 5px solid;
+  border-image: linear-gradient(45deg, rgb(224, 136, 22), rgb(250, 87, 66)) 1;
+}
+
+#restart-btn:hover {
+  background: linear-gradient(45deg, rgb(224, 136, 22), rgb(250, 87, 66));
+  color: white;
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+#restart-btn:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
 }

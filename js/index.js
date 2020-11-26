@@ -161,7 +161,7 @@ class Player {
       this.points += 10;
       this.firstRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
     } else {
-      this.firstRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
+      this.firstRoundPoints = `<i class="fas fa-times" id="red-mark"></i>`;
     }
   }
 
@@ -188,7 +188,7 @@ class Player {
       this.points += 10;
       this.secondRoundPoints = `<i class="fas fa-check" id="orange-check"></i>`;
     } else {
-      this.secondRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
+      this.secondRoundPoints = `<i class="fas fa-times" id="red-mark"></i>`;
     }
   }
 
@@ -234,7 +234,7 @@ class Player {
       this.points += 15;
       this.thirdRoundPoints = `<i class="fas fa-check" id="orange-check"></i>`;
     } else {
-      this.thirdRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
+      this.thirdRoundPoints = `<i class="fas fa-times" id="red-mark"></i>`;
     }
   }
 
@@ -243,7 +243,7 @@ class Player {
       this.points += 40;
       this.fourthRoundPoints = `<i class="fas fa-check" id="green-check"></i>`;
     } else {
-      this.fourthRoundPoints = `<i class="fas fa-times" id="red-cross"></i>`;
+      this.fourthRoundPoints = `<i class="fas fa-times" id="red-mark"></i>`;
     }
   }
 
