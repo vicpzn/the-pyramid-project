@@ -7,10 +7,15 @@ const goBackBtn = document.querySelector("#go-back-btn");
 
 var audio = new Audio("./flip-sound.mp3");
 
-const cardsBottom = document.querySelectorAll("#bottom-cards img");
-const cardsLeft = document.querySelectorAll("#left-cards img");
-const cardsTop = document.querySelectorAll("#top-cards img");
-const cardsRight = document.querySelectorAll("#right-cards img");
+const cardsBottom = document.querySelectorAll("#bottom-cards .back-card");
+const cardsLeft = document.querySelectorAll("#left-cards .back-card");
+const cardsTop = document.querySelectorAll("#top-cards .back-card");
+const cardsRight = document.querySelectorAll("#right-cards .back-card");
+const cardsBottomFront = document.querySelectorAll("#bottom-cards .front-card");
+const cardsLeftFront = document.querySelectorAll("#left-cards .front-card");
+const cardsTopFront = document.querySelectorAll("#top-cards .front-card");
+const cardsRightFront = document.querySelectorAll("#right-cards .front-card");
+const cardFlipDivs = document.querySelectorAll("#card-flip");
 
 var cardsColorFiles = [];
 
@@ -247,7 +252,7 @@ class Player {
     }
   }
 
-  changeFirstCardFileName(arr, num) {
+  changeFirstCardFileName(arr, num, divFlip) {
     var index = this.firstCard.indexOf(" ");
     var pictureValue = this.firstCard.substr(0, index);
     if (pictureValue.length === 2) {
@@ -258,10 +263,11 @@ class Player {
     var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
     nameCardImg = nameCardImg.replace(/\s/g, "");
     arr[num].src = nameCardImg;
+    cardFlipDivs[divFlip].classList.toggle("flip");
     audio.play();
   }
 
-  changeSecondCardFileName(arr, num) {
+  changeSecondCardFileName(arr, num, divFlip) {
     var index = this.secondCard.indexOf(" ");
     var pictureValue = this.secondCard.substr(0, index);
     if (pictureValue.length === 2) {
@@ -272,10 +278,11 @@ class Player {
     var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
     nameCardImg = nameCardImg.replace(/\s/g, "");
     arr[num].src = nameCardImg;
+    cardFlipDivs[divFlip].classList.toggle("flip");
     audio.play();
   }
 
-  changeThirdCardFileName(arr, num) {
+  changeThirdCardFileName(arr, num, divFlip) {
     var index = this.thirdCard.indexOf(" ");
     var pictureValue = this.thirdCard.substr(0, index);
     if (pictureValue.length === 2) {
@@ -286,10 +293,11 @@ class Player {
     var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
     nameCardImg = nameCardImg.replace(/\s/g, "");
     arr[num].src = nameCardImg;
+    cardFlipDivs[divFlip].classList.toggle("flip");
     audio.play();
   }
 
-  changeFourthCardFileName(arr, num) {
+  changeFourthCardFileName(arr, num, divFlip) {
     var index = this.fourthCard.indexOf(" ");
     var pictureValue = this.fourthCard.substr(0, index);
     if (pictureValue.length === 2) {
@@ -300,6 +308,7 @@ class Player {
     var nameCardImg = `./img/cards/${pictureValue}${pictureFamily}.png`;
     nameCardImg = nameCardImg.replace(/\s/g, "");
     arr[num].src = nameCardImg;
+    cardFlipDivs[divFlip].classList.toggle("flip");
     audio.play();
   }
 
@@ -335,12 +344,13 @@ const player4 = new Player();
 
 // Assign random cards color
 
-function randomColorCards(cards) {
+function randomColorCards(cards, cardsTwo) {
   var color = cardsColorFiles[getRandomInt(cardsColorFiles.length)];
   const index = cardsColorFiles.indexOf(color);
   cardsColorFiles.splice(index, 1);
   for (let i = 0; i < cards.length; i++) {
     cards[i].src = color;
+    cardsTwo[i].src = color;
   }
 }
 
@@ -376,10 +386,10 @@ startBtn.addEventListener("click", () => {
   player2.assignRandomName(nameScore2, player2);
   player3.assignRandomName(nameScore3, player3);
   player4.assignRandomName(nameScore4, player4);
-  randomColorCards(cardsBottom);
-  randomColorCards(cardsLeft);
-  randomColorCards(cardsTop);
-  randomColorCards(cardsRight);
+  randomColorCards(cardsBottom, cardsBottomFront);
+  randomColorCards(cardsLeft, cardsLeftFront);
+  randomColorCards(cardsTop, cardsTopFront);
+  randomColorCards(cardsRight, cardsRightFront);
   namesBoard();
 });
 
@@ -496,7 +506,7 @@ function actionsPlayerOneFirstRound() {
   player1.firstRound();
   yourScore.innerHTML = player1.points;
   playerOneFirstRoundScore.innerHTML = player1.firstRoundPoints;
-  player1.changeFirstCardFileName(cardsBottom, 0);
+  player1.changeFirstCardFileName(cardsBottom, 0, 0);
   simulationFirstRound();
   deckCards.addEventListener("click", () => show(secondPromptWindow));
   getTheValue();
@@ -543,19 +553,19 @@ function simulationFirstRound() {
   busyState();
   setTimeout(() => {
     player2.firstRound();
-    player2.changeFirstCardFileName(cardsLeft, 0);
+    player2.changeFirstCardFileName(cardsLeft, 0, 4);
     leftScore.innerHTML = player2.points;
     playerTwoFirstRoundScore.innerHTML = player2.firstRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.firstRound();
-    player3.changeFirstCardFileName(cardsTop, 0);
+    player3.changeFirstCardFileName(cardsTop, 0, 8);
     topScore.innerHTML = player3.points;
     playerThreeFirstRoundScore.innerHTML = player3.firstRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.firstRound();
-    player4.changeFirstCardFileName(cardsRight, 0);
+    player4.changeFirstCardFileName(cardsRight, 0, 12);
     rightScore.innerHTML = player4.points;
     playerFourFirstRoundScore.innerHTML = player4.firstRoundPoints;
   }, 3000);
@@ -572,7 +582,7 @@ function actionsPlayerOneSecondRound() {
   player1.secondRound();
   yourScore.innerHTML = player1.points;
   playerOneSecondRoundScore.innerHTML = player1.secondRoundPoints;
-  player1.changeSecondCardFileName(cardsBottom, 1);
+  player1.changeSecondCardFileName(cardsBottom, 1, 1);
   simulationSecondRound();
   deckCards.addEventListener("click", () => show(thirdPromptWindow));
   getTheValues();
@@ -605,19 +615,19 @@ function simulationSecondRound() {
   busyState();
   setTimeout(() => {
     player2.secondRound();
-    player2.changeSecondCardFileName(cardsLeft, 1);
+    player2.changeSecondCardFileName(cardsLeft, 1, 5);
     leftScore.innerHTML = player2.points;
     playerTwoSecondRoundScore.innerHTML = player2.secondRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.secondRound();
-    player3.changeSecondCardFileName(cardsTop, 1);
+    player3.changeSecondCardFileName(cardsTop, 1, 9);
     topScore.innerHTML = player3.points;
     playerThreeSecondRoundScore.innerHTML = player3.secondRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.secondRound();
-    player4.changeSecondCardFileName(cardsRight, 1);
+    player4.changeSecondCardFileName(cardsRight, 1, 13);
     rightScore.innerHTML = player4.points;
     playerFourSecondRoundScore.innerHTML = player4.secondRoundPoints;
   }, 3000);
@@ -635,7 +645,7 @@ function actionsPlayerOneThirdRound() {
   player1.thirdRound();
   yourScore.innerHTML = player1.points;
   playerOneThirdRoundScore.innerHTML = player1.thirdRoundPoints;
-  player1.changeThirdCardFileName(cardsBottom, 2);
+  player1.changeThirdCardFileName(cardsBottom, 2, 2);
   simulationThirdRound();
   deckCards.addEventListener("click", () => show(fourthPromptWindow));
 }
@@ -654,19 +664,19 @@ function simulationThirdRound() {
   busyState();
   setTimeout(() => {
     player2.thirdRound();
-    player2.changeThirdCardFileName(cardsLeft, 2);
+    player2.changeThirdCardFileName(cardsLeft, 2, 6);
     leftScore.innerHTML = player2.points;
     playerTwoThirdRoundScore.innerHTML = player2.thirdRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.thirdRound();
-    player3.changeThirdCardFileName(cardsTop, 2);
+    player3.changeThirdCardFileName(cardsTop, 2, 10);
     topScore.innerHTML = player3.points;
     playerThreeThirdRoundScore.innerHTML = player3.thirdRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.thirdRound();
-    player4.changeThirdCardFileName(cardsRight, 2);
+    player4.changeThirdCardFileName(cardsRight, 2, 14);
     rightScore.innerHTML = player4.points;
     playerFourThirdRoundScore.innerHTML = player4.thirdRoundPoints;
   }, 3000);
@@ -685,7 +695,7 @@ function actionsPlayerOneFourthRound() {
   player1.fourthRound();
   yourScore.innerHTML = player1.points;
   playerOneFourthRoundScore.innerHTML = player1.fourthRoundPoints;
-  player1.changeFourthCardFileName(cardsBottom, 3);
+  player1.changeFourthCardFileName(cardsBottom, 3, 3);
   simulationFourthRound();
 }
 
@@ -713,19 +723,19 @@ function simulationFourthRound() {
   busyState();
   setTimeout(() => {
     player2.fourthRound();
-    player2.changeFourthCardFileName(cardsLeft, 3);
+    player2.changeFourthCardFileName(cardsLeft, 3, 7);
     leftScore.innerHTML = player2.points;
     playerTwoFourthRoundScore.innerHTML = player2.fourthRoundPoints;
   }, 1000);
   setTimeout(() => {
     player3.fourthRound();
-    player3.changeFourthCardFileName(cardsTop, 3);
+    player3.changeFourthCardFileName(cardsTop, 3, 11);
     topScore.innerHTML = player3.points;
     playerThreeFourthRoundScore.innerHTML = player3.fourthRoundPoints;
   }, 2000);
   setTimeout(() => {
     player4.fourthRound();
-    player4.changeFourthCardFileName(cardsRight, 3);
+    player4.changeFourthCardFileName(cardsRight, 3, 15);
     rightScore.innerHTML = player4.points;
     playerFourFourthRoundScore.innerHTML = player4.fourthRoundPoints;
   }, 3000);
@@ -790,14 +800,15 @@ restartBtn.addEventListener("click", () => {
   playerFourFourthRoundScore.innerHTML = "";
   assignRandomChoices();
   initCardsColorFiles();
-  randomColorCards(cardsBottom);
-  randomColorCards(cardsLeft);
-  randomColorCards(cardsTop);
-  randomColorCards(cardsRight);
+  randomColorCards(cardsBottom, cardsBottomFront);
+  randomColorCards(cardsLeft, cardsLeftFront);
+  randomColorCards(cardsTop, cardsTopFront);
+  randomColorCards(cardsRight, cardsRightFront);
   yourTurn();
   deckCards.addEventListener("click", () => hide(secondPromptWindow));
   deckCards.addEventListener("click", () => hide(thirdPromptWindow));
   deckCards.addEventListener("click", () => hide(fourthPromptWindow));
   deckCards.addEventListener("click", () => show(firstPromptWindow));
   endList.innerHTML = "";
+  cardFlipDivs.forEach((card) => card.classList.toggle("flip"));
 });

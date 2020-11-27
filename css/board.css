@@ -39,6 +39,7 @@
   left: calc(100% / 2 - 248px);
   width: auto;
   transform: rotate(180deg);
+  perspective: 1000px;
 }
 
 #right-cards {
@@ -141,11 +142,22 @@
   font-size: 20px;
 }
 
+.back-card {
+  width: 124px;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
 .front-card {
   width: 124px;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform 0.5s;
+  backface-visibility: hidden;
 }
 
 .front-card:active {
@@ -189,4 +201,15 @@
 
 #name-top {
   transform: rotate(180deg);
+}
+
+#card-flip {
+  position: relative;
+  transform-style: preserve-3d;
+  height: 189.48px;
+}
+
+#card-flip.flip {
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
 }
