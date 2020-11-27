@@ -584,7 +584,11 @@ function getTheValues() {
   var pictureValue = player1.firstCard.substr(0, index);
   var index2 = player1.secondCard.indexOf(" ");
   var pictureValue2 = player1.secondCard.substr(0, index2);
-  spanInterval.innerHTML = `[${pictureValue};${pictureValue2}]`;
+  if (Number(pictureValue) <= Number(pictureValue2)) {
+    spanInterval.innerHTML = `${pictureValue} - ${pictureValue2}`;
+  } else if (Number(pictureValue) >= Number(pictureValue2)) {
+    spanInterval.innerHTML = `${pictureValue2} - ${pictureValue}`;
+  }
 }
 
 higherBtn.addEventListener("click", () => {
